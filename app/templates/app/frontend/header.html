@@ -86,13 +86,13 @@
                     <nav>
                         <ul>
                             <li>
-                                <a class="active" href="index.html">Home</a>
+                                <a class="active" href="{% url 'index-frontend' %}">Home</a>
                             </li>
                             <li>
-                                <a href="shop-grid-right.html">Shop</a>
+                                <a href="{% url 'shop-grid' %}">Shop</a>
                             </li>
                             <li>
-                                <a href="#">Vendors</a>
+                                <a href="{% url 'vendors-grid' %}">Vendors</a>
                             </li>
                         </ul>
                     </nav>
