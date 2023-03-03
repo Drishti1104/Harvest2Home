@@ -11,7 +11,6 @@ from django.db.models import Count
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 from dateutil import tz
-
 # Create your views here.
 
 def index_frontend(request):
@@ -39,9 +38,89 @@ def login_page(request):
     else:
         return render(request, "app/login.html")
 
-def register(request):
-    return render(request, "app/frontend/page-register.html")
+def send_otp_email(otp, email):
+    subject = "Verify your Email - {}".format(email)
+    print(otp)
+    message = "Your 4-digit OTP to verify your account is : " + str(otp) + ". Please don't share it with anyone else"
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
 
+def send_psw_email(otp, email):
+    subject = "Reset your Password - {}".format(email)
+    print(otp)
+    message = "Your 4-digit OTP to reset your password is : " + str(otp) + ". Please don't share it with anyone else"
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+
+def send_otp_email(otp, email):
+    subject = "Verify your Email - {}".format(email)
+    print(otp)
+    message = "Your 4-digit OTP to verify your account is : " + str(otp) + ". Please don't share it with anyone else"
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+
+def send_psw_email(otp, email):
+    subject = "Reset your Password - {}".format(email)
+    print(otp)
+    message = "Your 4-digit OTP to reset your password is : " + str(otp) + ". Please don't share it with anyone else"
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+
+def register(request):
+    if request.method == "POST":
+        fnd = User.objects.filter(Email = request.POST['email'].lower())
+        if len(fnd) == 0:
+            request.session['username'] = request.POST['username']
+            request.session['email'] = request.POST['email'].lower()
+            request.session['number'] = request.POST['number']
+            request.session['address'] = request.POST['address']
+            request.session['pincode'] = request.POST['pincode']
+            request.session['password'] = request.POST['password']
+            cpswd = request.POST['confirm-password']
+
+            # Register Without OTP Verification
+            name = request.POST['username']
+            email = request.POST['email'].lower()
+            number = request.POST['number']
+            address = request.POST['address']
+            pincode = request.POST['pincode']
+            pswd = request.POST['password']
+            cpswd = request.POST['confirm-password']
+            if request.session['pswd'] == cpswd:
+                request.session['pswd'] = make_password(request.POST['password'])
+                request.session['otp'] = random.randint(1000,9999)
+                send_otp_email(request.session['otp'], request.session['email'])
+                messages.success(request, "OTP is sent to your email. Please enter it.")
+                return redirect("verifyotppage")
+                
+                # Register Without OTP Verification
+            if pswd == cpswd:
+                AddUser = User.objects.create(
+                    Name = name,
+                    Email = email,
+                    Phone = number,
+                    Address = address,
+                    Pin_code = pincode,
+                    Passwd = pswd
+                )
+                messages.success(request, "You have registered successfully. Please login to continue")
+                return redirect("login")
+            else:
+                messages.error(request, "Password and Confirm Password do not match. Please try again")
+                return redirect("register")
+        else:
+            messages.error(request, "User already exists. Please login")
+            return redirect("login")
+    else:
+        return render(request, "app/frontend/page-register.html")
+
+
+def logout(request):
+    return render(request, 'app/frontend/index-frontend.html')
 # def logout(request):
     #  if 'email' in request.session:
     #     del request.session['id']
