@@ -228,7 +228,8 @@
                                             <h1 class="mb-5">Login</h1>
                                             <p class="mb-30">Don't have an account? <a href="{% url 'register' %}">Create here</a></p>
                                         </div>
-                                        <form method="post">
+                                        <form method="POST" action="{% url 'login' %}">
+                                            {% csrf_token %}
                                             <div class="form-group">
                                                 <input type="text" required="" name="email" placeholder="Username or Email *" />
                                             </div>

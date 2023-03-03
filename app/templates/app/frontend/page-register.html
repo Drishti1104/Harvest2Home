@@ -222,9 +222,10 @@
                                     <div class="padding_eight_all bg-white">
                                         <div class="heading_s1">
                                             <h1 class="mb-5">Create an Account</h1>
-                                            <p class="mb-30">Already have an account? <a href="{% url 'login' %}">Login</a></p>
+                                            <p class="mb-30">Already have an account? <a href="{% url 'login-page' %}">Login</a></p>
                                         </div>
-                                        <form method="post">
+                                        <form method="POST" action="">
+                                            {% csrf_token %}
                                             <div class="form-group">
                                                 <input type="text" required="" name="username" placeholder="Full Name" />
                                             </div>
@@ -232,7 +233,7 @@
                                                 <input type="email" required="" name="email" placeholder="Email" />
                                             </div>
                                             <div class="form-group">
-                                                <input type="text" required="" name="email" placeholder="Contact Number" />
+                                                <input type="text" required="" name="number" placeholder="Contact Number" />
                                             </div>
                                             <div class="form-group">
                                                 <input type="text" required="" name="email" placeholder="Address" />
@@ -241,7 +242,7 @@
                                                 <input required="" type="password" name="password" placeholder="Password" />
                                             </div>
                                             <div class="form-group">
-                                                <input required="" type="password" name="password" placeholder="Confirm password" />
+                                                <input required="" type="password" name="cpassword" placeholder="Confirm password" />
                                             </div>
                                             {% comment %} <div class="login_footer form-group">
                                                 <div class="chek-form">
