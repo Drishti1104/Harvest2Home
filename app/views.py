@@ -120,16 +120,14 @@ def register(request):
 
 
 def logout(request):
-    return render(request, 'app/frontend/index-frontend.html')
-# def logout(request):
-    #  if 'email' in request.session:
-    #     del request.session['id']
-    #     del request.session['email']
-    #     del request.session['is_user']
-    #     return redirect("login")
-    # else:
-    #     return redirect("login")
-    # return render(request, 'app/frontend/index-frontend.html')
+    if 'email' in request.session:
+        del request.session['id']
+        del request.session['email']
+        del request.session['is_user']
+        return render('app/frontend/index-frontend.html')
+    else:
+        return render('app/frontend/index-frontend.html')
+    # return redirect('app/frontend/index-frontend.html')
 
 def shop_grid(request):
     return render(request, "app/frontend/shop-grid-left.html")
