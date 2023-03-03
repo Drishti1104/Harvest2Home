@@ -23,3 +23,12 @@ def vendors_grid(request):
 
 def vendor_details(request):
     return render(request, "app/frontend/vendor-details.html")
+
+def cart(request):
+    return render(request, "app/frontend/shop-cart.html")
+
+def checkout(request):
+    return render(request, "app/frontend/shop-checkout.html")
+
+def wishlist(request):
+    return render(request, "app/frontend/shop-wishlist.html")

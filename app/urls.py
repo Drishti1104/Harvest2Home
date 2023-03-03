@@ -9,4 +9,7 @@ urlpatterns = [
     path("product", product, name="product"),
     path("vendors-grid", vendors_grid, name="vendors-grid"),
     path("vendor-details", vendor_details, name="vendor-details"),
+    path("cart", cart, name="cart"),
+    path("checkout", checkout, name="checkout"),
+    path("wishlist", wishlist, name="wishlist"),
 ]

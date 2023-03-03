@@ -11,7 +11,7 @@
                         <ul>
                             <li><a href="page-about.htlm">About Us</a></li>
                             <li><a href="page-account.html">My Account</a></li>
-                            <li><a href="shop-wishlist.html">Wishlist</a></li>
+                            <li><a href="{% url 'wishlist' %}">Wishlist</a></li>
                             <li><a href="shop-order.html">Order Tracking</a></li>
                         </ul>
                     </div>
@@ -119,26 +119,26 @@
                                     </select>
                                 </form>
                             </div> {% endcomment %}
-                            <div class="header-action-icon-2">
+                            {% comment %} <div class="header-action-icon-2">
                                 <a href="shop-compare.html">
                                     <img class="svgInject" alt="Nest" src="{% static 'assets-frontend/imgs/theme/icons/icon-compare.svg' %}" />
                                     <span class="pro-count blue">3</span>
                                 </a>
                                 <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
-                            </div>
+                            </div> {% endcomment %}
                             <div class="header-action-icon-2">
-                                <a href="shop-wishlist.html">
+                                <a href="{% url 'wishlist' %}">
                                     <img class="svgInject" alt="Nest" src="{% static 'assets-frontend/imgs/theme/icons/icon-heart.svg' %}" />
                                     <span class="pro-count blue">6</span>
                                 </a>
-                                <a href="shop-wishlist.html"><span class="lable">Wishlist</span></a>
+                                <a href="{% url 'wishlist' %}"><span class="lable">Wishlist</span></a>
                             </div>
                             <div class="header-action-icon-2">
-                                <a class="mini-cart-icon" href="shop-cart.html">
+                                <a class="mini-cart-icon" href="{% url 'cart' %}">
                                     <img alt="Nest" src="{% static 'assets-frontend/imgs/theme/icons/icon-cart.svg' %}" />
                                     <span class="pro-count blue">2</span>
                                 </a>
-                                <a href="shop-cart.html"><span class="lable">Cart</span></a>
+                                <a href="{% url 'cart' %}"><span class="lable">Cart</span></a>
                                 <div class="cart-dropdown-wrap cart-dropdown-hm2">
                                     <ul>
                                         <li>
@@ -171,7 +171,7 @@
                                             <h4>Total <span>$4000.00</span></h4>
                                         </div>
                                         <div class="shopping-cart-button">
-                                            <a href="shop-cart.html" class="outline">View cart</a>
+                                            <a href="{% url 'cart' %}" class="outline">View cart</a>
                                             <a href="shop-checkout.html">Checkout</a>
                                         </div>
                                     </div>
@@ -191,7 +191,7 @@
                                             <a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a>
                                         </li>
                                         <li>
-                                            <a href="shop-wishlist.html"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
+                                            <a href="{% url 'wishlist' %}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a>
                                         </li>
                                         <li>
                                             <a href="page-login.html"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a>
@@ -317,8 +317,8 @@
                                             </ul>
                                         </li>
                                         <li><a href="shop-filter.html">Shop – Filter</a></li>
-                                        <li><a href="shop-wishlist.html">Shop – Wishlist</a></li>
-                                        <li><a href="shop-cart.html">Shop – Cart</a></li>
+                                        <li><a href="{% url 'wishlist' %}">Shop – Wishlist</a></li>
+                                        <li><a href="{% url 'cart' %}">Shop – Cart</a></li>
                                         <li><a href="shop-checkout.html">Shop – Checkout</a></li>
                                         <li><a href="shop-compare.html">Shop – Compare</a></li>
                                         <li>
@@ -463,7 +463,7 @@
                 <div class="header-action-right d-block d-lg-none">
                     <div class="header-action-2">
                         <div class="header-action-icon-2">
-                            <a href="shop-wishlist.html">
+                            <a href="{% url 'wishlist' %}">
                                 <img alt="Nest" src="assets-frontend/imgs/theme/icons/icon-heart.svg" />
                                 <span class="pro-count white">4</span>
                             </a>
@@ -505,7 +505,7 @@
                                         <h4>Total <span>$383.00</span></h4>
                                     </div>
                                     <div class="shopping-cart-button">
-                                        <a href="shop-cart.html">View cart</a>
+                                        <a href="{% url 'cart' %}">View cart</a>
                                         <a href="shop-checkout.html">Checkout</a>
                                     </div>
                                 </div>
