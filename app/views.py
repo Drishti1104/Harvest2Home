@@ -80,7 +80,7 @@ def register(request):
             request.session['address'] = request.POST['address']
             request.session['pincode'] = request.POST['pincode']
             request.session['password'] = request.POST['password']
-            cpswd = request.POST['confirm-password']
+            cpswd = request.POST['cpassword']
 
             # Register Without OTP Verification
             name = request.POST['username']
@@ -89,9 +89,9 @@ def register(request):
             address = request.POST['address']
             pincode = request.POST['pincode']
             pswd = request.POST['password']
-            cpswd = request.POST['confirm-password']
-            if request.session['pswd'] == cpswd:
-                request.session['pswd'] = make_password(request.POST['password'])
+            cpswd = request.POST['cpassword']
+            if request.session['password'] == cpswd:
+                request.session['password'] = make_password(request.POST['password'])
                 request.session['otp'] = random.randint(1000,9999)
                 send_otp_email(request.session['otp'], request.session['email'])
                 messages.success(request, "OTP is sent to your email. Please enter it.")
@@ -166,11 +166,5 @@ def cart(request):
     total_price = sum(item.product.price * item.quantity for item in cart_items)
     return render(request, 'cart.html', {'cart_items': cart_items, 'total_price': total_price})
 
-# urls.py
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('add_to_cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),
-    path('cart/', views.cart, name='cart'),
-]
+def verifyotppage(request):
+    return render(request,'app/frontend/page-forgot-password.html')
